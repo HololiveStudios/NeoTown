@@ -1,0 +1,48 @@
+@media (max-width: 600px) {
+  #dial, #dial svg {
+    width: 78px;
+  }
+  #dial svg {
+    height: 78px;
+  }
+  #gift {
+    top: calc(112px + var(--sa));
+  }
+  #top .chip {
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  #sub {
+    right: 90px;
+  }
+  #money {
+    right: auto;
+    left: 8px;
+    bottom: calc(66px + var(--sb));
+  }
+  #bot {
+    right: 8px;
+    bottom: calc(112px + var(--sb));
+  }
+  #side {
+    bottom: calc(112px + var(--sb));
+  }
+}
+
+@media (max-height: 430px) {
+  #side .pb {
+    width: 38px;
+    height: 38px;
+  }
+  #side {
+    gap: 4px;
+    top: calc(72px + var(--sa));
+  }
+  #top .chip {
+    height: 40px;
+  }
+  .pb.big {
+    width: 56px;
+    height: 56px;
+  }
+}

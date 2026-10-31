@@ -1,0 +1,133 @@
+.px {
+  background: linear-gradient(#2a95c8, #14649a);
+  border: 2px solid #08263f;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 2px #6fd0f2, 0 2px 0 #041622, 0 3px 6px #0008;
+}
+
+.in {
+  background: linear-gradient(#0e3b63, #082b4a);
+  border: 2px solid #1c6b9e;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 0 #0005;
+}
+
+.pb {
+  background: linear-gradient(#3cb4e4, #1a78b4);
+  border: 2px solid #07253d;
+  border-radius: 11px;
+  box-shadow: inset 0 0 0 2px #8fe4ff, inset 0 -4px 0 #0f5a8c, 0 2px 0 #041622;
+  color: #fff;
+  font: inherit;
+  text-shadow: inherit;
+  padding: 4px 7px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  min-height: 34px;
+}
+
+.pb:active {
+  transform: translateY(1px);
+  filter: brightness(.88);
+}
+
+.pb.sel {
+  background: linear-gradient(#ffc24a, #e08a14);
+  box-shadow: inset 0 0 0 2px #ffe6a0, inset 0 -4px 0 #b86a08, 0 2px 0 #041622;
+  color: #2a1600;
+  text-shadow: none;
+}
+
+.pb.ok {
+  background: linear-gradient(#5fd37e, #2a9a4c);
+}
+
+.pb.no {
+  background: linear-gradient(#e86a6a, #b03030);
+}
+
+.pb.sm {
+  min-height: 26px;
+  padding: 1px 8px;
+}
+
+.pb.big {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+}
+
+.ic {
+  display: inline-block;
+  image-rendering: pixelated;
+  background-size: 100% 100%;
+  flex: 0 0 auto;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.chip.bad {
+  color: #ff8a7a;
+}
+
+.sp {
+  flex: 1;
+}
+
+.r {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px 0;
+  padding: 5px 8px;
+}
+
+.r.g {
+  color: #9ff0b0;
+}
+
+.r.b {
+  color: #ff9a90;
+}
+
+.h {
+  color: #ffd24a;
+  margin: 10px 0 3px;
+}
+
+.dim {
+  opacity: .8;
+  font-size: 11px;
+  margin: 4px 0;
+  font-weight: 400;
+}
+
+.lg {
+  margin: 3px 0;
+  font-size: 12px;
+}
+
+.lg.bad {
+  color: #ff9a90;
+}
+
+.lg.good {
+  color: #9ff0b0;
+}
+
+svg.in {
+  width: 100%;
+  height: 54px;
+  display: block;
+}

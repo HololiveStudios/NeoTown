@@ -1,0 +1,41 @@
+#win {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  z-index: 9;
+}
+
+#wb {
+  width: 100%;
+  max-width: 560px;
+  max-height: 92%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#wt {
+  background: linear-gradient(#3cb4e4, #1a78b4);
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid #08263f;
+  font-size: 15px;
+}
+
+#tabs {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  flex-wrap: wrap;
+}
+
+#wc {
+  padding: 6px 8px 10px;
+  overflow: auto;
+}

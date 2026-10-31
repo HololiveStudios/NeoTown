@@ -1,0 +1,32 @@
+name = "delta-city-edge"
+main = "worker/index.js"
+compatibility_date = "2026-03-01"
+account_id = "623fd1e96fc794d2657e16234959ddd1"
+
+[vars]
+ENVIRONMENT = "production"
+MAX_CITIES_PER_USER = "10"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "cartown-db"
+database_id = "79f040e9-2507-4cff-b7e5-16fe8e991d4f"
+migrations_dir = "migrations"
+
+[[kv_namespaces]]
+binding = "DELTA_KV"
+id = "6112371e37d8492fb177db7e3d453547"
+
+[durable_objects]
+bindings = [
+  { name = "CITY_SESSION", class_name = "CitySession" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["CitySession"]

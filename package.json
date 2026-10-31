@@ -1,0 +1,20 @@
+{
+  "name": "delta-city",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Delta City v4 — Simulador Urbano Isométrico 2.5D em Software Rasterization",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "vite build && wrangler deploy",
+    "pages:deploy": "vite build && wrangler pages deploy dist --project-name=delta-city",
+    "d1:migrate": "wrangler d1 execute cartown-db --remote --file=schema.sql"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

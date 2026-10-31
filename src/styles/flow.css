@@ -1,0 +1,340 @@
+/* Flow / Auth / Title / Setup Screens */
+.flow-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 18, 32, 0.88);
+  backdrop-filter: blur(4px);
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.flow-card {
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.flow-card.wide {
+  max-width: 780px;
+}
+
+.flow-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #1c6b9e;
+  padding-bottom: 8px;
+}
+
+.flow-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffd24a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flow-subtitle {
+  font-size: 12px;
+  color: #a4c8e0;
+}
+
+.flow-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.flow-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.flow-label {
+  font-size: 12px;
+  color: #bee3ff;
+  font-weight: 700;
+}
+
+.flow-input {
+  background: #08263f;
+  border: 2px solid #1c6b9e;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.flow-input:focus {
+  border-color: #ffd24a;
+  box-shadow: 0 0 0 2px rgba(255, 210, 74, 0.3);
+}
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flow-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 2px solid #1c6b9e;
+}
+
+.flow-city-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.flow-city-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #08263f;
+  border: 1px solid #1c6b9e;
+  transition: transform 0.1s, border-color 0.1s;
+}
+
+.flow-city-item:hover {
+  border-color: #ffd24a;
+  transform: translateY(-1px);
+}
+
+.flow-city-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.flow-city-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.flow-city-details {
+  font-size: 11px;
+  color: #8bb3cf;
+}
+
+.flow-preview-canvas {
+  width: 160px;
+  height: 160px;
+  border: 2px solid #1c6b9e;
+  border-radius: 8px;
+  background: #0b1220;
+  image-rendering: pixelated;
+}
+
+/* Locked items in build menu */
+.pb.item.locked {
+  opacity: 0.6;
+  filter: grayscale(0.6);
+  cursor: not-allowed;
+  border-color: #613333;
+}
+
+.pb.item.locked small {
+  color: #ff9b9b;
+}
+
+/* Pulsing effect for play button */
+@keyframes pulse-play-anim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 210, 74, 0.7);
+    border-color: #ffd24a;
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 210, 74, 0);
+    border-color: #ffe682;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 210, 74, 0);
+    border-color: #ffd24a;
+  }
+}
+
+.pulse-play {
+  animation: pulse-play-anim 1.5s infinite;
+  border: 2px solid #ffd24a !important;
+  color: #ffd24a !important;
+}
+
+/* Mission Onboarding Toast */
+.mission-toast {
+  position: fixed;
+  top: 60px;
+  right: 16px;
+  z-index: 90;
+  max-width: 360px;
+  padding: 14px 16px;
+  background: rgba(11, 26, 44, 0.95);
+  border: 2px solid #1c6b9e;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: slideInToast 0.3s ease-out;
+}
+
+@keyframes slideInToast {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mission-toast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(28, 107, 158, 0.5);
+  padding-bottom: 6px;
+}
+
+.mission-toast-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffd24a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mission-toast-close {
+  background: none;
+  border: none;
+  color: #8bb3cf;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.mission-toast-close:hover {
+  color: #fff;
+}
+
+.mission-toast-body {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #d8ecf8;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mission-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.mission-step span {
+  color: #ffd24a;
+  font-weight: 700;
+}
+
+/* Level-Up Celebration Modal */
+.levelup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 16, 28, 0.85);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.levelup-card {
+  width: 90%;
+  max-width: 480px;
+  background: #0b1a2c;
+  border: 3px solid #ffd24a;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255, 210, 74, 0.4);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.levelup-badge {
+  font-size: 42px;
+}
+
+.levelup-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffd24a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.levelup-subtitle {
+  font-size: 14px;
+  color: #a4c8e0;
+}
+
+.levelup-details {
+  width: 100%;
+  background: #06121f;
+  border: 1px solid #1c6b9e;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  text-align: left;
+}
+
+.levelup-details div span {
+  font-weight: 700;
+}
