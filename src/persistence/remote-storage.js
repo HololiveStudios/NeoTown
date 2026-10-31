@@ -1,13 +1,15 @@
-const TOKEN_KEY = 'delta_city_token';
-const USER_KEY = 'delta_city_user';
+const TOKEN_KEY = 'neotown_token';
+const USER_KEY = 'neotown_user';
+const LEGACY_TOKEN_KEY = 'delta_city_token';
+const LEGACY_USER_KEY = 'delta_city_user';
 
 export const remoteAuth = {
-  token: localStorage.getItem(TOKEN_KEY) || null,
+  token: localStorage.getItem(TOKEN_KEY) || localStorage.getItem(LEGACY_TOKEN_KEY) || null,
   user: null,
 
   init() {
     try {
-      const u = localStorage.getItem(USER_KEY);
+      const u = localStorage.getItem(USER_KEY) || localStorage.getItem(LEGACY_USER_KEY);
       if (u) this.user = JSON.parse(u);
     } catch (e) {}
   },
@@ -19,10 +21,18 @@ export const remoteAuth = {
   setSession(token, user) {
     this.token = token;
     this.user = user;
-    if (token) localStorage.setItem(TOKEN_KEY, token);
-    else localStorage.removeItem(TOKEN_KEY);
-    if (user) localStorage.setItem(USER_KEY, JSON.stringify(user));
-    else localStorage.removeItem(USER_KEY);
+    if (token) {
+      localStorage.setItem(TOKEN_KEY, token);
+    } else {
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(LEGACY_TOKEN_KEY);
+    }
+    if (user) {
+      localStorage.setItem(USER_KEY, JSON.stringify(user));
+    } else {
+      localStorage.removeItem(USER_KEY);
+      localStorage.removeItem(LEGACY_USER_KEY);
+    }
   },
 
   clear() {
@@ -43,7 +53,7 @@ function computeQuickSignature(d) {
   return `${d.day}|${d.month}|${d.year}|${d.funds}|${d.pop}|${d.cityPoints}|${(d.kind || '').slice(0, 64)}|${(d.built || '').slice(0, 64)}`;
 }
 
-const EDGE_WORKER_ORIGIN = 'https://delta-city-edge.ca88321499.workers.dev';
+const EDGE_WORKER_ORIGIN = 'https://neotown.ca88321499.workers.dev';
 
 function resolveApiUrl(endpoint) {
   if (typeof window !== 'undefined' && window.location) {

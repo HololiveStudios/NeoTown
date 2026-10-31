@@ -1,9 +1,11 @@
-// Delta City — Cloudflare Worker + Durable Objects (CitySession) + D1 + KV Edge Backend
+// NeoTown — Cloudflare Worker + Durable Objects (CitySession) + D1 + KV Edge Backend
+export const APP_VERSION = '1.0.0';
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'X-App-Version': APP_VERSION
 };
 
 function jsonResponse(data, status = 200, extraHeaders = {}) {
@@ -11,6 +13,7 @@ function jsonResponse(data, status = 200, extraHeaders = {}) {
     status,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
+      'X-App-Version': APP_VERSION,
       ...CORS_HEADERS,
       ...extraHeaders
     }
@@ -256,7 +259,7 @@ export class CitySession {
       return jsonResponse({ ok: true, version: this.version });
     }
 
-    return jsonResponse({ ok: true, status: 'Delta City Edge DO Active', version: this.version });
+    return jsonResponse({ ok: true, status: 'NeoTown Edge DO Active', version: this.version, appVersion: APP_VERSION });
   }
 }
 
@@ -276,13 +279,28 @@ export default {
       if (env.ASSETS) {
         return env.ASSETS.fetch(request);
       }
-      return new Response('Delta City Edge Worker Active', { status: 200 });
+      return new Response(`NeoTown Edge Worker Active (v${APP_VERSION})`, {
+        status: 200,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-App-Version': APP_VERSION }
+      });
     }
 
     try {
       const db = env.DB;
       if (db) await ensureSchema(db);
-      const jwtSecret = env.JWT_SECRET || 'delta-city-edge-secret-key-2026';
+      const jwtSecret = env.JWT_SECRET || 'neotown-edge-secret-key-2026';
+      const kv = env.NEO_KV || env.DELTA_KV;
+
+      // 0. API Version & Health: GET /api/version
+      if (pathname === '/api/version' && request.method === 'GET') {
+        return jsonResponse({
+          ok: true,
+          appName: 'NeoTown',
+          version: APP_VERSION,
+          environment: env.ENVIRONMENT || 'production',
+          status: 'online'
+        });
+      }
 
       // 1. Direct Durable Object City Session Route: /api/city/:cityId/*
       if (pathname.startsWith('/api/city/')) {
@@ -298,26 +316,27 @@ export default {
 
       // 2. Global Static Configs via KV: GET /api/config
       if (pathname === '/api/config' && request.method === 'GET') {
-        if (env.DELTA_KV) {
-          const cached = await env.DELTA_KV.get('global_config', 'json');
-          if (cached) return jsonResponse({ ok: true, config: cached, source: 'kv-edge' });
+        if (kv) {
+          const cached = await kv.get('global_config', 'json');
+          if (cached) return jsonResponse({ ok: true, config: cached, source: 'kv-edge', version: APP_VERSION });
         }
         const defaultConfig = {
-          version: '4.0.0-edge',
+          version: APP_VERSION,
+          appName: 'NeoTown',
           maxCitiesPerUser: Number(env.MAX_CITIES_PER_USER || 10),
           zoningInflationRate: 0.008,
           ranks: ['Assentamento', 'Povoado', 'Vila', 'Cidadezinha', 'Cidade', 'Grande Cidade', 'Metrópole']
         };
-        if (env.DELTA_KV) {
-          ctx.waitUntil(env.DELTA_KV.put('global_config', JSON.stringify(defaultConfig), { expirationTtl: 3600 }));
+        if (kv) {
+          ctx.waitUntil(kv.put('global_config', JSON.stringify(defaultConfig), { expirationTtl: 3600 }));
         }
-        return jsonResponse({ ok: true, config: defaultConfig, source: 'worker' });
+        return jsonResponse({ ok: true, config: defaultConfig, source: 'worker', version: APP_VERSION });
       }
 
       // 3. Global Leaderboard: GET /api/leaderboard
       if (pathname === '/api/leaderboard' && request.method === 'GET') {
-        if (env.DELTA_KV) {
-          const cachedLb = await env.DELTA_KV.get('leaderboard_top20', 'json');
+        if (kv) {
+          const cachedLb = await kv.get('leaderboard_top20', 'json');
           if (cachedLb) return jsonResponse({ ok: true, leaderboard: cachedLb, cached: true });
         }
         const { results } = await db
@@ -328,8 +347,8 @@ export default {
              LIMIT 20`
           )
           .all();
-        if (env.DELTA_KV) {
-          ctx.waitUntil(env.DELTA_KV.put('leaderboard_top20', JSON.stringify(results || []), { expirationTtl: 60 }));
+        if (kv) {
+          ctx.waitUntil(kv.put('leaderboard_top20', JSON.stringify(results || []), { expirationTtl: 60 }));
         }
         return jsonResponse({ ok: true, leaderboard: results || [] });
       }
@@ -475,8 +494,8 @@ export default {
         ]);
 
         // Warm KV Cache & Sync Durable Object in background
-        if (env.DELTA_KV) {
-          ctx.waitUntil(env.DELTA_KV.put(`city:${cityId}`, payloadStr, { expirationTtl: 3600 }));
+        if (kv) {
+          ctx.waitUntil(kv.put(`city:${cityId}`, payloadStr, { expirationTtl: 3600 }));
         }
         if (env.CITY_SESSION) {
           ctx.waitUntil(
@@ -592,8 +611,8 @@ export default {
               .bind(nextVersion, payloadStr, now, cityId, session.userId)
           ]);
 
-          if (env.DELTA_KV) {
-            ctx.waitUntil(env.DELTA_KV.put(`city:${cityId}`, payloadStr, { expirationTtl: 3600 }));
+          if (kv) {
+            ctx.waitUntil(kv.put(`city:${cityId}`, payloadStr, { expirationTtl: 3600 }));
           }
           if (env.CITY_SESSION) {
             ctx.waitUntil(
@@ -616,8 +635,8 @@ export default {
             db.prepare('DELETE FROM delta_city_blobs WHERE city_id = ? AND owner_id = ?').bind(cityId, session.userId),
             db.prepare('DELETE FROM delta_cities WHERE id = ? AND owner_id = ?').bind(cityId, session.userId)
           ]);
-          if (env.DELTA_KV) {
-            ctx.waitUntil(env.DELTA_KV.delete(`city:${cityId}`));
+          if (kv) {
+            ctx.waitUntil(kv.delete(`city:${cityId}`));
           }
           return jsonResponse({ ok: true });
         }

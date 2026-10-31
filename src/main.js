@@ -36,7 +36,7 @@ ScreenManager.init();
 if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then((reg) => {
-      console.log('Delta City PWA Service Worker registrado:', reg.scope);
+      console.log('NeoTown PWA Service Worker registrado:', reg.scope);
     }).catch((err) => {
       console.warn('Falha no registro do Service Worker:', err);
     });

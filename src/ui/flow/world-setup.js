@@ -4,7 +4,7 @@ import { MC } from '../app-loop.js';
 
 const CITY_NAMES = [
   'Nova Aurora', 'Porto Real', 'Vale Verde', 'Serra Azul', 'Bela Vista',
-  'Vila Serena', 'Ponta do Sol', 'Monte Claro', 'Rio Bonito', 'Horizonte Delta'
+  'Vila Serena', 'Ponta do Sol', 'Monte Claro', 'Rio Bonito', 'Horizonte NeoTown'
 ];
 
 export function createWorldSetupModal({ onCancel, onConfirm }) {
@@ -167,7 +167,7 @@ export function createWorldSetupModal({ onCancel, onConfirm }) {
     confirmBtn.textContent = 'Gerando mundo...';
 
     const config = {
-      name: nameInput.value.trim() || 'Delta City',
+      name: nameInput.value.trim() || 'NeoTown',
       seed: currentSeed,
       size: currentSize,
       type: currentType,

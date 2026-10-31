@@ -17,7 +17,7 @@ export const starterMethods = {
     }
     /* Marcos Visuais e Arranha-Ceus de Grande Porte (3x3 e 2x2) ja construidos */
     this.placeFootprint(c + 1, c + 1, K.MEGA, 3, true, 3);
-    this.bText.set(I(c + 1, c + 1), 'MEGA CENTER DELTA');
+    this.bText.set(I(c + 1, c + 1), 'MEGA CENTER NEOTOWN');
     this.placeFootprint(c - 3, c + 1, K.SKY_COM, 2, true, 3);
     this.placeFootprint(c + 1, c - 3, K.SKY_COM, 2, true, 3);
     this.placeFootprint(c - 3, c - 3, K.SKY_RES, 2, true, 3);

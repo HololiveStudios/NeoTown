@@ -1,10 +1,11 @@
-name = "delta-city-edge"
+name = "neotown"
 main = "worker/index.js"
 compatibility_date = "2026-03-01"
 account_id = "623fd1e96fc794d2657e16234959ddd1"
 
 [vars]
 ENVIRONMENT = "production"
+APP_VERSION = "1.0.0"
 MAX_CITIES_PER_USER = "10"
 
 [assets]
@@ -19,7 +20,7 @@ database_id = "79f040e9-2507-4cff-b7e5-16fe8e991d4f"
 migrations_dir = "migrations"
 
 [[kv_namespaces]]
-binding = "DELTA_KV"
+binding = "NEO_KV"
 id = "6112371e37d8492fb177db7e3d453547"
 
 [durable_objects]

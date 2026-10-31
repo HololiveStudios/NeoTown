@@ -29,8 +29,8 @@ export class Game {
       difficulty === 'sandbox' ? 999999 : 18000
     );
     Object.assign(this, {
-      id: o.id || null, name: o.name || 'Delta City', N, seed, rs: seed, type: o.type || 'continent',
-      gameMode: difficulty, mayorName: o.mayorName || 'Prefeito Delta', cityRank: o.cityRank || 0, cityPoints: o.cityPoints || 0,
+      id: o.id || null, name: o.name || 'NeoTown', N, seed, rs: seed, type: o.type || 'continent',
+      gameMode: difficulty, mayorName: o.mayorName || 'Prefeito NeoTown', cityRank: o.cityRank || 0, cityPoints: o.cityPoints || 0,
       funds: initialFunds, debtTotal: o.debtTotal || 0, loansCount: o.loansCount || 0,
       day: 1, month: 1, year: 2026, tod: 0.32, speed: 0, acc: 0, anim: 0,
       tax: { r: 10, c: 10, i: 10 }, interest: difficulty === 'hard' ? 12 : 8, inflation: difficulty === 'easy' ? 2 : (difficulty === 'hard' ? 6 : 4),

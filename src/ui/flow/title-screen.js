@@ -11,9 +11,12 @@ export function createTitleScreen({ onNewWorld, onLoadCity, onLogout }) {
   overlay.innerHTML = `
     <div class="px flow-card wide">
       <div class="flow-header">
-        <div>
-          <div class="flow-title">Delta City</div>
-          <div class="flow-subtitle">Gabinete de Gestão Urbana Online • v4.0.0</div>
+        <div class="flow-logo-container">
+          <img src="/logo.png" alt="NeoTown Logo" class="flow-logo-img hero" />
+          <div>
+            <div class="flow-title">NeoTown</div>
+            <div class="flow-subtitle">Gabinete de Gestão Urbana Online • v1.0.0</div>
+          </div>
         </div>
         <div style="font-size: 12px; color: #bee3ff; text-align: right;">
           <div>Prefeito(a): <b style="color: #ffd24a;">${username}</b></div>
@@ -76,7 +79,7 @@ export function createTitleScreen({ onNewWorld, onLoadCity, onLogout }) {
 
         item.innerHTML = `
           <div class="flow-city-meta">
-            <div class="flow-city-name">${city.name || 'Delta City'}</div>
+            <div class="flow-city-name">${city.name || 'NeoTown'}</div>
             <div class="flow-city-details">
               População: <b style="color: #7be08a;">${city.pop || 0}</b> • Caixa: <b style="color: #ffd24a;">${fundsStr}</b> • Ano: ${city.year || 2026}
             </div>

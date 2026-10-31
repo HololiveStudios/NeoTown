@@ -54,7 +54,7 @@ export function createSkyscrapers(ctx) {
     Q([P(-.48, -.48, 0), P(.48, -.48, 0), P(.48, .48, 0), P(-.48, .48, 0)], tn([188, 192, 200]), 1, 0);
     const pod = B(-.42, -.42, .42, .38); blk(pod.u0, pod.v0, pod.u1, pod.v1, 0, 16, mat(tn([52, 62, 82])));
     wins(pod, 'L', 8, 2, 2, 13, .04, t.ab, [140, 210, 255]); wins(pod, 'R', 8, 2, 2, 13, .04, t.ab, [100, 164, 216]);
-    sign(pod, 'L', .22, 12.2, .56, 3.2, tn([24, 32, 48]), 'DELTA', [255, 216, 90]);
+    sign(pod, 'L', .22, 12.2, .56, 3.2, tn([24, 32, 48]), 'NEO', [255, 216, 90]);
     /* Torres laterais de apoio */
     for (const [u0, v0, u1, v1, H] of [[-.36, -.36, -.12, -.08, 62], [-.08, -.36, .34, -.12, 56]]) {
       const wB = B(u0, v0, u1, v1); blk(u0, v0, u1, v1, 16, H, { t: sh(gl, 1.18), l: sh(gl, .94), r: sh(gl, .58) });

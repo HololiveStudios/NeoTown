@@ -1,7 +1,7 @@
 {
-  "name": "Delta City — Simulação Urbana",
-  "short_name": "Delta City",
-  "description": "Simulador urbano e governamental realista isométrico 2.5D",
+  "name": "NeoTown — Simulação Urbana",
+  "short_name": "NeoTown",
+  "description": "NeoTown — Simulador urbano e governamental realista isométrico 2.5D",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

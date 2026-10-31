@@ -15,7 +15,7 @@ export function newGame(o) {
 
 export function load() {
   try {
-    const s = localStorage.getItem(KEY);
+    const s = localStorage.getItem(KEY) || localStorage.getItem('delta_city_v4');
     if (s) {
       const g = Delta.Game.fromJSON(JSON.parse(s));
       uiState.g = g;

@@ -18,7 +18,7 @@ export default defineConfig({
   },
   plugins: [
     {
-      name: 'delta-city-api-middleware',
+      name: 'neotown-api-middleware',
       configureServer(server) {
         server.middlewares.use(async (req, res, next) => {
           const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);

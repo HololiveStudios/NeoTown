@@ -13,7 +13,7 @@ export const KN = [
   'Vazio', 'Rua', 'Residencial', 'Comercial', 'Industrial', 'Parque',
   'Posto Policial', 'Posto de Bombeiros', 'Posto de Saúde', 'Escola Básica',
   'Usina a carvão', 'Usina solar', 'Torre de água',
-  'Condomínio Imperial (2x2)', 'Torre Corporativa (2x2)', 'Mega Center Delta (3x3)', 'Torre Panorama (2x2)',
+  'Condomínio Imperial (2x2)', 'Torre Corporativa (2x2)', 'Mega Center NeoTown (3x3)', 'Torre Panorama (2x2)',
   'Delegacia Regional', 'Quartel Geral de Polícia',
   'Estação de Bombeiros', 'Quartel Central de Bombeiros',
   'Pronto-Socorro Municipal', 'Hospital Geral Metropolitano',

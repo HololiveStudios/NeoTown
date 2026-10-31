@@ -54,5 +54,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`\n  Delta City rodando em: http://localhost:${PORT}\n`);
+  console.log(`\n  NeoTown v1.0.0 rodando em: http://localhost:${PORT}\n`);
 });

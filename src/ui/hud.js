@@ -107,7 +107,7 @@ export function hud() {
     const fm = (v) => Math.abs(v) >= 1000 ? (v / 1000).toFixed(1) + 'K' : v;
     set('cF', ic('coin', 3) + '<b>' + (f < 0 ? '-' : '') + '$' + fm(Math.abs(f)) + '</b><span class="net' + (net < 0 ? ' neg' : '') + '">' + (net >= 0 ? '+' : '-') + fm(Math.abs(net)) + '</span>', f < 0);
   }
-  set('cN', cl(g.name || 'Delta City'));
+  set('cN', cl(g.name || 'NeoTown'));
   set('cP', ic('pop') + '<b>' + g.pop + '</b>');
   set('cH', ic(hp >= 60 ? 'smile' : hp >= 40 ? 'flat' : 'sad') + '<b>' + hp + '%</b>', hp < 30);
   set('cD', g.dateStr());

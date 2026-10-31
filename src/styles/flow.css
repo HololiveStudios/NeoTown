@@ -35,6 +35,32 @@
   padding-bottom: 8px;
 }
 
+.flow-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.flow-logo-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ffd24a;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  image-rendering: auto;
+}
+
+.flow-logo-img.hero {
+  width: 96px;
+  height: 96px;
+}
+
+.flow-logo-img.sm {
+  width: 44px;
+  height: 44px;
+}
+
 .flow-title {
   font-size: 20px;
   font-weight: 700;

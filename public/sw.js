@@ -1,8 +1,10 @@
-const CACHE_NAME = 'delta-city-v4.1';
+const CACHE_NAME = 'neotown-v1.0.0';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
+  '/logo.png',
+  '/favicon.png',
   '/icons/icon-192.png',
   '/icons/icon-512.png'
 ];
@@ -50,12 +52,7 @@ self.addEventListener('fetch', (event) => {
           });
         }
         return networkResponse;
-      }).catch(() => {
-        // Fallback offline para navegação
-        if (event.request.mode === 'navigate') {
-          return caches.match('/');
-        }
-      });
+      }).catch(() => null);
 
       return cachedResponse || fetchPromise;
     })

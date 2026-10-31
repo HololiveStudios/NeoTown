@@ -8,9 +8,12 @@ export function createAuthScreen({ onSuccess }) {
   overlay.innerHTML = `
     <div class="px flow-card">
       <div class="flow-header">
-        <div>
-          <div class="flow-title">Delta City Online</div>
-          <div class="flow-subtitle">Autenticação e Acesso ao Gabinete do Prefeito</div>
+        <div class="flow-logo-container">
+          <img src="/logo.png" alt="NeoTown Logo" class="flow-logo-img" />
+          <div>
+            <div class="flow-title">NeoTown Online</div>
+            <div class="flow-subtitle">Autenticação e Acesso ao Gabinete do Prefeito • v1.0.0</div>
+          </div>
         </div>
       </div>
       <form id="auth-form" class="flow-body">
